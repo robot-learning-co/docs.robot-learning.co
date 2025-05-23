@@ -22,7 +22,7 @@
           {
             "group": "Examples",
             "pages": [
-              "examples/pose_estimation"
+              "examples/object_pose_from_prompt"
             ]
           },
           {
