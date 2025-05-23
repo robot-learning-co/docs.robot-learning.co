@@ -1,6 +1,6 @@
 ---
 title: "6D Object Pose from Prompt"
-description: "Estimate a 6D object pose from an RGB-D image and a named 3D mesh."
+description: "Estimate the 6D pose of an object from an RGB-D image using a 3D mesh"
 ---
 
 <img height="200" src="/images/pose_estimation.png" />
@@ -41,13 +41,13 @@ Make sure to follow the <a href="/Quickstart">Quickstart</a> to set up the SDK.
 </AccordionGroup>
 
 ## Capturing an image
-Use [examples/hardware/realsense.py](https://github.com/robot-learning-co/trlc-sdk/blob/da80e6afd54bc8f263c8bf82f20a0bb6cddfffb4/examples/hardware/realsense.py) to capture an aligned RGB and Depth image of your scene. 
+Use [examples/hardware/realsense.py](https://github.com/robot-learning-co/trlc-sdk/blob/main/examples/hardware/realsense.py) to capture an aligned RGB and Depth image of your scene. 
 If you want to use a RealSense camera make sure to install [librealsense](https://github.com/IntelRealSense/librealsense/tree/e1688cc318457f7dd57abcdbedd3398062db3009/doc) and **pyrealsense** using `pip install -e .[cameras]`.
 
-Alternatively you can also work with the example images under [examples/data/scene/](https://github.com/robot-learning-co/trlc-sdk/tree/da80e6afd54bc8f263c8bf82f20a0bb6cddfffb4/examples/data/scene).
+Alternatively you can also work with the example images under [examples/data/scene/](https://github.com/robot-learning-co/trlc-sdk/blob/main/examples/data/scene).
 
 ## Estimating the 6D object pose
-Follow [examples/prompt_to_object_pose.py](https://github.com/robot-learning-co/trlc-sdk/blob/c8f94e914d6af4856fce5ab4066b3b7e621bb4ac/examples/prompt_to_object_pose.ipynb)
+Follow [examples/prompt_to_object_pose.ipynb](https://github.com/robot-learning-co/trlc-sdk/blob/main/examples/prompt_to_object_pose.ipynb)
 
 
 
