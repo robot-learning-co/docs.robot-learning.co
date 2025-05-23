@@ -1,0 +1,36 @@
+---
+title: "6D Pose Estimation"
+description: "Estimate a 6D pose from an RGB-D image, a mask, and a 3D mesh"
+---
+
+Calling this endpoint will run a modified version of [FoundationPose](https://github.com/NVlabs/FoundationPose) by NVIDIA.
+
+```python
+from PIL import Image
+import numpy as np
+from trlc_sdk.http.client import HTTPClient
+from trlc_sdk.utils.network import encode_file, encode_image
+
+
+rgb = Image.open("./../data/scene/rgb.png")
+depth = Image.open("./../data/scene/depth.png")
+mask = Image.open("./../data/scene/mask.png")
+
+cam_K = np.loadtxt("./../data/scene/cam_K.txt").reshape(3,3)
+
+mesh_obj_path = f"./../data/meshes/hand_soap/mesh.obj"
+mesh_mtl_path = f"./../data/meshes/hand_soap/mesh.obj.mtl"
+mesh_png_path = f"./../data/meshes/hand_soap/texture.png"
+
+client = HTTPClient()
+
+results = client.estimate_pose(
+    rgb_base64=encode_image(rgb),
+    depth_base64=encode_image(depth),
+    mask_base64=encode_image(mask),
+    cam_K=cam_K.tolist(),
+    mesh_obj=encode_file(mesh_obj_path),
+    mesh_mtl=encode_file(mesh_mtl_path),
+    mesh_png=encode_file(mesh_png_path)
+)
+```

@@ -1,6 +1,6 @@
 ---
-title: "6D Pose Estimation"
-description: "Estimate a 6D pose from an RGB-D image using a 3D mesh."
+title: "6D Object Pose from Prompt"
+description: "Estimate a 6D object pose from an RGB-D image and a named 3D mesh."
 ---
 
 <img height="200" src="/images/pose_estimation.png" />
@@ -11,6 +11,20 @@ Make sure to follow the <a href="/Quickstart">Quickstart</a> to set up the SDK.
 ## Creating a 3D Object Mesh
 
 <AccordionGroup>
+  <Accordion title="From a Smartphone Scan" defaultOpen="true">
+    1. Install the [AR Code Object Capture 3D Scan](https://apps.apple.com/us/app/ar-code-object-capture-3d-scan/id1488198492) app on your mobile phone.
+    2. Open the app, follow the prompt instructions to scan the object.
+    <img height="200" src="/images/ar_capture1.png" />
+    3. Finish scan, generate the object mesh and export as .usdz file.
+    4. Convert the **.usdz** file to **.obj** use [online tools](https://products.aspose.app/3d/conversion/usdz-to-obj).
+    5. Load the **.obj** into [MeshLab](https://www.meshlab.net/#download).
+    <img height="200" src="/images/ar_capture2.png" />
+    6. Select **File** > **Export Mesh As...** and select **Alias Wavefront Object (*.obj)**
+    7. Create a folder named after your object (e.g. **soap/**) and save the mesh as **mesh.obj**
+    8. Name the texture **texture.png**
+    <img height="200" src="/images/ar_capture3.png" />
+    9. Now your folder **object/** should contain: **mesh.obj**, **mesh.obj.mtl**, and **texture.png**
+  </Accordion>
   <Accordion title="From a CAD Model">
     1. Use Autodesk Fusion to load any CAD format and select **Save As Mesh**
     <img height="200" src="/images/fusion1.png" />
@@ -23,36 +37,17 @@ Make sure to follow the <a href="/Quickstart">Quickstart</a> to set up the SDK.
     5. Select **Filters** > **Texture** > **Transfer: Vertex Color to Texture** to generate a texture file.
     <img height="200" src="/images/meshlab3.png" />
     6. Select **File** > **Export Mesh As..** and select **Alias Wavefront Object (*.obj)**
-
-
-  </Accordion>
-
-  <Accordion title="From a Smartphone Scan">
-    1. Install the [AR Code Object Capture 3D Scan](https://apps.apple.com/us/app/ar-code-object-capture-3d-scan/id1488198492) app on your mobile phone.
-    2. Open the app, follow the prompt instructions to scan the object.
-    <img height="200" src="/images/ar_capture1.png" />
-    3. Finish scan, generate the object mesh and export as .usdz file.
-    4. Convert the **.usdz** file to **.obj** use [online tools](https://products.aspose.app/3d/conversion/usdz-to-obj).
-    5. Load the **.obj** into [MeshLab](https://www.meshlab.net/#download).
-    <img height="200" src="/images/ar_capture2.png" />
-    6. Select **File** > **Export Mesh As..** and select **Alias Wavefront Object (*.obj)**
   </Accordion>
 </AccordionGroup>
 
-## Capture an image
-Use [examples/capture/realsense.py](https://github.com/robot-learning-co/trlc-sdk/blob/e15bacdf34439fef3e0920fdb634b46b28c3a9e1/examples/capture/realsense.py) to capture an aligned RGB and Depth image of your scene. 
+## Capturing an image
+Use [examples/hardware/realsense.py](https://github.com/robot-learning-co/trlc-sdk/blob/da80e6afd54bc8f263c8bf82f20a0bb6cddfffb4/examples/hardware/realsense.py) to capture an aligned RGB and Depth image of your scene. 
 If you want to use a RealSense camera make sure to install [librealsense](https://github.com/IntelRealSense/librealsense/tree/e1688cc318457f7dd57abcdbedd3398062db3009/doc) and **pyrealsense** using `pip install -e .[cameras]`.
 
-Alternatively you can also work with the example images under [examples/capture/out/](https://github.com/robot-learning-co/trlc-sdk/tree/e15bacdf34439fef3e0920fdb634b46b28c3a9e1/examples/capture/out).
+Alternatively you can also work with the example images under [examples/data/scene/](https://github.com/robot-learning-co/trlc-sdk/tree/da80e6afd54bc8f263c8bf82f20a0bb6cddfffb4/examples/data/scene).
 
-## Create a mask
-Use [examples/segmentation/from_prompt.ipynb](https://github.com/robot-learning-co/trlc-sdk/blob/e15bacdf34439fef3e0920fdb634b46b28c3a9e1/examples/segmentation/from_prompt.ipynb) to generate a mask for your object.
-
-You can use points or bounding boxes to define which object you want mask out.
-
-## Estimate the pose
-Use [examples/pose_estimation/from_mesh.ipynb](https://github.com/robot-learning-co/trlc-sdk/blob/7a9d84aa2a3528b7720f76644c9b2ab192de80fb/examples/pose_estimation/from_mesh.ipynb) to generate a mask for your object.
-
+## Estimating the 6D object pose
+Follow [examples/prompt_to_object_pose.py](https://github.com/robot-learning-co/trlc-sdk/blob/c8f94e914d6af4856fce5ab4066b3b7e621bb4ac/examples/prompt_to_object_pose.ipynb)
 
 
 

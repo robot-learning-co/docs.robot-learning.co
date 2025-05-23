@@ -16,7 +16,6 @@
           {
             "group": "Get Started",
             "pages": [
-              "introduction",
               "quickstart"
             ]
           },
@@ -24,6 +23,13 @@
             "group": "Examples",
             "pages": [
               "examples/pose_estimation"
+            ]
+          },
+          {
+            "group": "Endpoints",
+            "pages": [
+              "endpoints/segmentation",
+              "endpoints/pose_estimation"
             ]
           }
         ]

@@ -1,0 +1,27 @@
+---
+title: "Grounded Segmentation"
+description: "Get masks for an object from an RGB image"
+---
+<img height="200" src="/images/segmentation.png" />
+
+Calling this endpoint will run a modified version of [Grounded SAM 2](https://github.com/IDEA-Research/Grounded-SAM-2?tab=readme-ov-file) by IDEA-Research.
+
+```python
+from PIL import Image
+import io, base64
+from trlc_sdk.http.client import HTTPClient
+
+rgb = Image.open("./data/scene/rgb.png")
+
+client = HTTPClient()
+
+text_prompt = "hand soap."
+
+buffer = io.BytesIO()
+rgb.convert("RGB").save(buffer, format="PNG")
+image_base64 = base64.b64encode(buffer.getvalue()).decode('utf-8')
+
+segmentation_results = client.segment(image_base64, text_prompt)
+```
+
+Make sure the object text prompt follows the given format (lowercase, ends with a period). You can also request multiple object masks (i.e. `"lego brick. hand soap."`)
